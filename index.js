@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ListView,
+  FlatList,
   Platform,
   StyleSheet,
   Text,
@@ -41,6 +41,11 @@ class Autocomplete extends Component {
       PropTypes.string,
       PropTypes.bool
     ]),
+    /**
+     * Used to extract a unique key for a given item at the specified index. Key is used for caching.
+     * default extractor checks item.key, then falls back to using the index, like React does.
+     */
+    keyExtractor: PropTypes.func,
     /*
      * These styles will be applied to the container which surrounds
      * the result list.
@@ -66,43 +71,24 @@ class Autocomplete extends Component {
      */
     renderItem: PropTypes.func,
     /**
-     * `renderSeparator` will be called to render the list separators
-     * which will be displayed between the list elements in the result view
-     * below the text input.
-     */
-    renderSeparator: PropTypes.func,
-    /**
      * renders custom TextInput. All props passed to this function.
      */
     renderTextInput: PropTypes.func,
-    /**
-    * `rowHasChanged` will be used for data objects comparison for dataSource
-    */
-    rowHasChanged: PropTypes.func
   };
 
   static defaultProps = {
     data: [],
     defaultValue: '',
     keyboardShouldPersistTaps: 'always',
+    keyExtractor: FlatList.keyExtractor,
     onStartShouldSetResponderCapture: () => false,
     renderItem: rowData => <Text>{rowData}</Text>,
-    renderSeparator: null,
     renderTextInput: props => <TextInput {...props} />,
-    rowHasChanged: (r1, r2) => r1 !== r2
   };
 
   constructor(props) {
     super(props);
-
-    const ds = new ListView.DataSource({ rowHasChanged: props.rowHasChanged });
-    this.state = { dataSource: ds.cloneWithRows(props.data) };
     this.resultList = null;
-  }
-
-  componentWillReceiveProps({ data }) {
-    const dataSource = this.state.dataSource.cloneWithRows(data);
-    this.setState({ dataSource });
   }
 
   /**
@@ -122,23 +108,23 @@ class Autocomplete extends Component {
   }
 
   renderResultList() {
-    const { dataSource } = this.state;
     const {
+      data,
       listStyle,
       renderItem,
-      renderSeparator,
       keyboardShouldPersistTaps,
+      keyExtractor,
       onEndReached,
       onEndReachedThreshold
     } = this.props;
 
     return (
-      <ListView
+      <FlatList
         ref={(resultList) => { this.resultList = resultList; }}
-        dataSource={dataSource}
+        data={data}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-        renderRow={renderItem}
-        renderSeparator={renderSeparator}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
         onEndReached={onEndReached}
         onEndReachedThreshold={onEndReachedThreshold}
         style={[styles.list, listStyle]}
@@ -159,8 +145,8 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const { dataSource } = this.state;
     const {
+      data,
       containerStyle,
       hideResults,
       inputContainerStyle,
@@ -168,7 +154,7 @@ class Autocomplete extends Component {
       onShowResults,
       onStartShouldSetResponderCapture
     } = this.props;
-    const showResults = dataSource.getRowCount() > 0;
+    const showResults = data.length > 0;
 
     // Notify listener if the suggestion will be shown.
     onShowResults && onShowResults(showResults);

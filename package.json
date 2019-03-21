@@ -1,6 +1,6 @@
 {
-  "name": "react-native-autocomplete-input",
-  "version": "3.6.0",
+  "name": "rn-autocomplete",
+  "version": "4.0.2",
   "description": "Pure javascript autocomplete input for react-native",
   "main": "index.js",
   "options": {
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mrlaessig/react-native-autocomplete-input.git"
+    "url": "git+ssh://git@github.com/tagkiller/rn-autocomplete.git"
   },
   "files": [
     "LICENSE",
@@ -28,12 +28,12 @@
     "Android",
     "autocomplete"
   ],
-  "author": "Laurence Bortfeld",
+  "author": "Younes Baddich",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/l-urence/react-native-autocomplete-input/issues"
+    "url": "https://github.com/tagkiller/rn-autocomplete/issues"
   },
-  "homepage": "https://github.com/l-urence/react-native-autocomplete-input#readme",
+  "homepage": "https://github.com/tagkiller/rn-autocomplete#readme",
   "dependencies": {
     "prop-types": "^15.5.10"
   },

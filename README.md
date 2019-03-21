@@ -7,7 +7,7 @@ A pure JS autocomplete component for React Native. Use this component in your ow
 
 ![Autocomplete Example](https://raw.githubusercontent.com/tagkiller/rn-autocomplete-input/master/example.gif)
 
-## How to use react-native-autocomplete-input
+## How to use rn-autocomplete
 Tested with RN >= 0.26.2. If you want to use RN < 0.26 try to install rn-autocomplete <= 0.0.5.
 
 ### Installation
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
 | onShowResult | function | `onShowResult` will be called when the autocomplete suggestions appear or disappear. |
 | onStartShouldSetResponderCapture | function | `onStartShouldSetResponderCapture` will be passed to the result list view container ([onStartShouldSetResponderCapture](https://facebook.github.io/react-native/docs/gesture-responder-system.html#capture-shouldset-handlers)). |
 | renderItem | function | `renderItem` will be called to render the data objects which will be displayed in the result view below the text input. |
-| renderSeparator | function | `renderSeparator` will be called to render the list separators which will be displayed between the list elements in the result view below the text input. |
 | renderTextInput | function | render custom TextInput. All props passed to this function. |
 
 ## Known issues
