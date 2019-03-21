@@ -69,10 +69,6 @@ class Autocomplete extends Component {
      * renders custom TextInput. All props passed to this function.
      */
     renderTextInput: PropTypes.func,
-    /**
-    * `rowHasChanged` will be used for data objects comparison for dataSource
-    */
-    rowHasChanged: PropTypes.func
   };
 
   static defaultProps = {
@@ -81,22 +77,12 @@ class Autocomplete extends Component {
     keyboardShouldPersistTaps: 'always',
     onStartShouldSetResponderCapture: () => false,
     renderItem: rowData => <Text>{rowData}</Text>,
-    renderSeparator: null,
     renderTextInput: props => <TextInput {...props} />,
-    rowHasChanged: (r1, r2) => r1 !== r2
   };
 
   constructor(props) {
     super(props);
-
-    const ds = new ListView.DataSource({ rowHasChanged: props.rowHasChanged });
-    this.state = { dataSource: ds.cloneWithRows(props.data) };
     this.resultList = null;
-  }
-
-  componentWillReceiveProps({ data }) {
-    const dataSource = this.state.dataSource.cloneWithRows(data);
-    this.setState({ dataSource });
   }
 
   /**
@@ -116,8 +102,8 @@ class Autocomplete extends Component {
   }
 
   renderResultList() {
-    const { dataSource } = this.state;
     const {
+      data,
       listStyle,
       renderItem,
       keyboardShouldPersistTaps,
@@ -128,7 +114,7 @@ class Autocomplete extends Component {
     return (
       <FlatList
         ref={(resultList) => { this.resultList = resultList; }}
-        data={dataSource}
+        data={data}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
         renderItem={renderItem}
         onEndReached={onEndReached}
@@ -151,8 +137,8 @@ class Autocomplete extends Component {
   }
 
   render() {
-    const { dataSource } = this.state;
     const {
+      data,
       containerStyle,
       hideResults,
       inputContainerStyle,
@@ -160,7 +146,7 @@ class Autocomplete extends Component {
       onShowResults,
       onStartShouldSetResponderCapture
     } = this.props;
-    const showResults = dataSource.getRowCount() > 0;
+    const showResults = data.length > 0;
 
     // Notify listener if the suggestion will be shown.
     onShowResults && onShowResults(showResults);

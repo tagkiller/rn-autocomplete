@@ -1,6 +1,6 @@
 {
   "name": "rn-autocomplete",
-  "version": "1.0.0",
+  "version": "4.0.1",
   "description": "Pure javascript autocomplete input for react-native",
   "main": "index.js",
   "options": {
