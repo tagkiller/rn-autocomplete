@@ -5,7 +5,7 @@
 ## BASED ON [mrlaessig/react-native-autocomplete-input](https://github.com/mrlaessig/react-native-autocomplete-input)
 A pure JS autocomplete component for React Native. Use this component in your own projects or use it as inspiration to build your own autocomplete.
 
-![Autocomplete Example](https://raw.githubusercontent.com/tagkiller/rn-autocomplete-input/master/example.gif)
+![Autocomplete Example](https://raw.githubusercontent.com/tagkiller/rn-autocomplete/master/example.gif)
 
 ## How to use rn-autocomplete
 Tested with RN >= 0.26.2. If you want to use RN < 0.26 try to install rn-autocomplete <= 0.0.5.
