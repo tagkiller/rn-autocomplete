@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  ListView,
+  FlatList,
   Platform,
   StyleSheet,
   Text,
@@ -66,12 +66,6 @@ class Autocomplete extends Component {
      */
     renderItem: PropTypes.func,
     /**
-     * `renderSeparator` will be called to render the list separators
-     * which will be displayed between the list elements in the result view
-     * below the text input.
-     */
-    renderSeparator: PropTypes.func,
-    /**
      * renders custom TextInput. All props passed to this function.
      */
     renderTextInput: PropTypes.func,
@@ -126,19 +120,17 @@ class Autocomplete extends Component {
     const {
       listStyle,
       renderItem,
-      renderSeparator,
       keyboardShouldPersistTaps,
       onEndReached,
       onEndReachedThreshold
     } = this.props;
 
     return (
-      <ListView
+      <FlatList
         ref={(resultList) => { this.resultList = resultList; }}
-        dataSource={dataSource}
+        data={dataSource}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
-        renderRow={renderItem}
-        renderSeparator={renderSeparator}
+        renderItem={renderItem}
         onEndReached={onEndReached}
         onEndReachedThreshold={onEndReachedThreshold}
         style={[styles.list, listStyle]}
