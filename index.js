@@ -41,6 +41,11 @@ class Autocomplete extends Component {
       PropTypes.string,
       PropTypes.bool
     ]),
+    /**
+     * Used to extract a unique key for a given item at the specified index. Key is used for caching.
+     * default extractor checks item.key, then falls back to using the index, like React does.
+     */
+    keyExtractor: PropTypes.func,
     /*
      * These styles will be applied to the container which surrounds
      * the result list.
@@ -75,6 +80,7 @@ class Autocomplete extends Component {
     data: [],
     defaultValue: '',
     keyboardShouldPersistTaps: 'always',
+    keyExtractor: FlatList.keyExtractor,
     onStartShouldSetResponderCapture: () => false,
     renderItem: rowData => <Text>{rowData}</Text>,
     renderTextInput: props => <TextInput {...props} />,
@@ -107,6 +113,7 @@ class Autocomplete extends Component {
       listStyle,
       renderItem,
       keyboardShouldPersistTaps,
+      keyExtractor,
       onEndReached,
       onEndReachedThreshold
     } = this.props;
@@ -116,6 +123,7 @@ class Autocomplete extends Component {
         ref={(resultList) => { this.resultList = resultList; }}
         data={data}
         keyboardShouldPersistTaps={keyboardShouldPersistTaps}
+        keyExtractor={keyExtractor}
         renderItem={renderItem}
         onEndReached={onEndReached}
         onEndReachedThreshold={onEndReachedThreshold}

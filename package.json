@@ -1,6 +1,6 @@
 {
   "name": "rn-autocomplete",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Pure javascript autocomplete input for react-native",
   "main": "index.js",
   "options": {
@@ -55,7 +55,7 @@
     "react": "~15.4.0-rc.4",
     "react-addons-test-utils": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-native": "^0.40.0",
+    "react-native": "^0.59.1",
     "react-native-mock": "^0.3.1",
     "sinon": "^1.17.4"
   }
