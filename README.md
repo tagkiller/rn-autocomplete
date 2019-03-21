@@ -1,5 +1,5 @@
 # rn-autocomplete
-[![npm version](https://badge.fury.io/js/rn-autocomplete.svg)](https://badge.fury.io/js/react-native-autocomplete-input)
+[![npm version](https://badge.fury.io/js/rn-autocomplete.svg)](https://badge.fury.io/js/rn-autocomplete)
 [![Build Status](https://travis-ci.org/tagkiller/rn-autocomplete.svg)](https://travis-ci.org/tagkiller/rn-autocomplete)
 
 ## BASED ON [mrlaessig/react-native-autocomplete-input](https://github.com/mrlaessig/react-native-autocomplete-input)
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
 ## Known issues
 * By default the autocomplete will not behave as expected inside a `<ScrollView />`. Set the scroll view's prop to fix this: `keyboardShouldPersistTaps={true}` for RN <= 0.39, or `keyboardShouldPersistTaps='always'` for RN >= 0.40. ([#5](https://github.com/mrlaessig/react-native-autocomplete-input/issues/5)).
-* If you want to test with Jest add ```jest.mock('react-native-autocomplete-input', () => 'Autocomplete');``` to your test.
+* If you want to test with Jest add ```jest.mock('rn-autocomplete', () => 'Autocomplete');``` to your test.
 
 ## Contribute
 Feel free to open issues or do a PR!
